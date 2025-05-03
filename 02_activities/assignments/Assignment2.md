@@ -54,7 +54,11 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 **HINT:** search type 1 vs type 2 slowly changing dimensions. 
 
 ```
-Your answer...
+The first artchitecture named type 1 slowly changing dimension is meant only to track and retain current information and thus overwrites any historical information. So if a customer changes addresses, the previous address information is overwritten and not kept. The table could look like this for example:
+customer_addresses (customer_id, address_line, city, province, postal_code, date_updated)
+
+The second architecture named type 2 slowly changing dimension keeps the historical information by adding a new record whenever a customer changes addresses. To find the current address for any customer one would need to find the latest date in the entry_date column. The table could look like this for example:
+customer_addresses (entry_id, customer_id, address_line, city, province, postal_code, entry_date)
 ```
 
 ***
